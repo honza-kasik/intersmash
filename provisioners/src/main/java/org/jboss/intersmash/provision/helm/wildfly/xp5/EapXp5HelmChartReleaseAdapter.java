@@ -1,4 +1,4 @@
-package org.jboss.intersmash.provision.helm.wildfly.eap8;
+package org.jboss.intersmash.provision.helm.wildfly.xp5;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -9,16 +9,16 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.jboss.intersmash.application.openshift.helm.HelmChartRelease;
-import org.jboss.intersmash.model.helm.charts.values.eap8.Build;
-import org.jboss.intersmash.model.helm.charts.values.eap8.Deploy;
-import org.jboss.intersmash.model.helm.charts.values.eap8.Env;
-import org.jboss.intersmash.model.helm.charts.values.eap8.Env__1;
-import org.jboss.intersmash.model.helm.charts.values.eap8.HelmEap8Release;
-import org.jboss.intersmash.model.helm.charts.values.eap8.Jdk17;
-import org.jboss.intersmash.model.helm.charts.values.eap8.Route;
-import org.jboss.intersmash.model.helm.charts.values.eap8.S2i;
-import org.jboss.intersmash.model.helm.charts.values.eap8.Tls;
-import org.jboss.intersmash.model.helm.charts.values.eap8.Tls__1;
+import org.jboss.intersmash.model.helm.charts.values.xp5.Build;
+import org.jboss.intersmash.model.helm.charts.values.xp5.Deploy;
+import org.jboss.intersmash.model.helm.charts.values.xp5.Env;
+import org.jboss.intersmash.model.helm.charts.values.xp5.Env__1;
+import org.jboss.intersmash.model.helm.charts.values.xp5.Jdk17;
+import org.jboss.intersmash.model.helm.charts.values.xp5.Route;
+import org.jboss.intersmash.model.helm.charts.values.xp5.S2i;
+import org.jboss.intersmash.model.helm.charts.values.xp5.Tls;
+import org.jboss.intersmash.model.helm.charts.values.xp5.Tls__1;
+import org.jboss.intersmash.model.helm.charts.values.xp5.HelmXp5Release;
 import org.jboss.intersmash.provision.helm.HelmChartReleaseAdapter;
 import org.jboss.intersmash.provision.helm.Image;
 import org.jboss.intersmash.provision.helm.wildfly.WildflyHelmChartRelease;
@@ -32,24 +32,24 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * An adapter that implements a valid EAP 8 {@link HelmChartRelease} by exposing an internal instance of
- * {@link HelmEap8Release} to store an EAP 8 Helm Charts release data and to represent a values file which can be serialized
+ * {@link HelmXp5Release} to store an EAP 8 Helm Charts release data and to represent a values file which can be serialized
  * as an output for {@link HelmChartRelease#toValuesFile()}
  *
  * This adapter is compliant with the contract which is required by the
  * {@link org.jboss.intersmash.provision.helm.HelmChartOpenShiftProvisioner} logic, i.e. to
  * implement {@link HelmChartRelease}, and allows for us to leverage a generated
- * {@link org.jboss.intersmash.provision.helm.wildfly.eap8.EapXp5HelmChartReleaseAdapter#adaptee}, i.e. in terms of UX, provide native release YAML definitions.
+ * {@link EapXp5HelmChartReleaseAdapter#adaptee}, i.e. in terms of UX, provide native release YAML definitions.
  */
 @Slf4j
-public class Eap8HelmChartReleaseAdapter extends HelmChartReleaseAdapter<HelmEap8Release>
+public class EapXp5HelmChartReleaseAdapter extends HelmChartReleaseAdapter<HelmXp5Release>
 		implements HelmChartRelease, WildflyHelmChartRelease {
 
-	public Eap8HelmChartReleaseAdapter(@NonNull HelmEap8Release release) {
+	public EapXp5HelmChartReleaseAdapter(@NonNull HelmXp5Release release) {
 		super(release, new ArrayList<>());
 		initDefaultReplicas(release);
 	}
 
-	public Eap8HelmChartReleaseAdapter(@NonNull HelmEap8Release release, List<Path> additionalValuesFiles) {
+	public EapXp5HelmChartReleaseAdapter(@NonNull HelmXp5Release release, List<Path> additionalValuesFiles) {
 		super(release, additionalValuesFiles);
 		initDefaultReplicas(release);
 	}
@@ -359,7 +359,7 @@ public class Eap8HelmChartReleaseAdapter extends HelmChartReleaseAdapter<HelmEap
 
 	@Override
 	public LinkedHashSet<String> getS2iFeaturePacks() {
-		LinkedHashSet result = new LinkedHashSet();
+		LinkedHashSet<String> result = new LinkedHashSet<>();
 		if (adaptee.getBuild() != null && adaptee.getBuild().getS2i() != null
 				&& !Strings.isNullOrEmpty(adaptee.getBuild().getS2i().getFeaturePacks())) {
 			Arrays.stream(adaptee.getBuild().getS2i().getFeaturePacks().split(","))
@@ -713,7 +713,7 @@ public class Eap8HelmChartReleaseAdapter extends HelmChartReleaseAdapter<HelmEap
 		return this;
 	}
 
-	private HelmEap8Release initDefaultReplicas(HelmEap8Release release) {
+	private HelmXp5Release initDefaultReplicas(HelmXp5Release release) {
 		if (release.getDeploy() == null) {
 			release = release.withDeploy(new Deploy());
 		}

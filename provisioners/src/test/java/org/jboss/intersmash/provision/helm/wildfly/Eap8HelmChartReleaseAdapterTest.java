@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import org.jboss.intersmash.model.helm.charts.values.eap8.HelmEap8Release;
 import org.jboss.intersmash.model.helm.charts.values.wildfly.HelmWildflyRelease;
 import org.jboss.intersmash.provision.helm.Image;
-import org.jboss.intersmash.provision.helm.wildfly.eap8.Eap8HelmChartReleaseAdapter;
+import org.jboss.intersmash.provision.helm.wildfly.eap8.EapXp5HelmChartReleaseAdapter;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -27,8 +27,8 @@ class Eap8HelmChartReleaseAdapterTest {
 	public void verifyEap8DynamicallyFilledAdapterTest() {
 		// arrange
 		HelmEap8Release adaptee = new HelmEap8Release();
-		Eap8HelmChartReleaseAdapter concreteAdapter = new Eap8HelmChartReleaseAdapter(adaptee);
-		Eap8HelmChartReleaseAdapter eap8HelmChartRelease = concreteAdapter;
+		EapXp5HelmChartReleaseAdapter concreteAdapter = new EapXp5HelmChartReleaseAdapter(adaptee);
+		EapXp5HelmChartReleaseAdapter eap8HelmChartRelease = concreteAdapter;
 
 		SecretVolume secretVolume = new SecretVolume("v1", "s1");
 		eap8HelmChartRelease

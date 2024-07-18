@@ -28,7 +28,7 @@ import org.jboss.intersmash.model.helm.charts.values.eap8.HelmEap8Release;
 import org.jboss.intersmash.model.helm.charts.values.wildfly.HelmWildflyRelease;
 import org.jboss.intersmash.provision.helm.wildfly.WildFlyHelmChartReleaseAdapter;
 import org.jboss.intersmash.provision.helm.wildfly.WildflyHelmChartRelease;
-import org.jboss.intersmash.provision.helm.wildfly.eap8.Eap8HelmChartReleaseAdapter;
+import org.jboss.intersmash.provision.helm.wildfly.eap8.EapXp5HelmChartReleaseAdapter;
 import org.jboss.intersmash.test.deployments.TestDeploymentProperties;
 import org.jboss.intersmash.test.deployments.WildflyDeploymentApplicationConfiguration;
 import org.jboss.intersmash.testsuite.IntersmashTestsuiteProperties;
@@ -45,7 +45,7 @@ public class WildflyHelmChartOpenShiftExampleApplication
 		if (IntersmashTestsuiteProperties.isCommunityTestExecutionProfileEnabled()) {
 			release = loadRelease(new WildFlyHelmChartReleaseAdapter(new HelmWildflyRelease()));
 		} else if (IntersmashTestsuiteProperties.isProductizedTestExecutionProfileEnabled()) {
-			release = loadRelease(new Eap8HelmChartReleaseAdapter(new HelmEap8Release()));
+			release = loadRelease(new EapXp5HelmChartReleaseAdapter(new HelmEap8Release()));
 		} else
 			throw new IllegalStateException("Not a valid testing profile!");
 	}
