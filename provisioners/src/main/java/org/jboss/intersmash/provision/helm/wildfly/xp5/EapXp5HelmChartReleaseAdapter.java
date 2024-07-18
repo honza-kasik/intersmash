@@ -13,12 +13,12 @@ import org.jboss.intersmash.model.helm.charts.values.xp5.Build;
 import org.jboss.intersmash.model.helm.charts.values.xp5.Deploy;
 import org.jboss.intersmash.model.helm.charts.values.xp5.Env;
 import org.jboss.intersmash.model.helm.charts.values.xp5.Env__1;
+import org.jboss.intersmash.model.helm.charts.values.xp5.HelmXp5Release;
 import org.jboss.intersmash.model.helm.charts.values.xp5.Jdk17;
 import org.jboss.intersmash.model.helm.charts.values.xp5.Route;
 import org.jboss.intersmash.model.helm.charts.values.xp5.S2i;
 import org.jboss.intersmash.model.helm.charts.values.xp5.Tls;
 import org.jboss.intersmash.model.helm.charts.values.xp5.Tls__1;
-import org.jboss.intersmash.model.helm.charts.values.xp5.HelmXp5Release;
 import org.jboss.intersmash.provision.helm.HelmChartReleaseAdapter;
 import org.jboss.intersmash.provision.helm.Image;
 import org.jboss.intersmash.provision.helm.wildfly.WildflyHelmChartRelease;
@@ -250,7 +250,7 @@ public class EapXp5HelmChartReleaseAdapter extends HelmChartReleaseAdapter<HelmX
 		if ((volumeMounts != null) && !volumeMounts.isEmpty()) {
 			volumeMounts.stream()
 					.forEach(v -> adaptee.getDeploy().getVolumeMounts().add(
-							new org.jboss.intersmash.model.helm.charts.values.eap8.VolumeMount()
+							new org.jboss.intersmash.model.helm.charts.values.xp5.VolumeMount()
 									.withName(v.getName())
 									.withMountPath(v.getMountPath())
 									.withMountPropagation(v.getMountPropagation())
@@ -274,7 +274,7 @@ public class EapXp5HelmChartReleaseAdapter extends HelmChartReleaseAdapter<HelmX
 			adaptee.getDeploy().setVolumeMounts(new ArrayList<>());
 		}
 		adaptee.getDeploy().getVolumeMounts().add(
-				new org.jboss.intersmash.model.helm.charts.values.eap8.VolumeMount()
+				new org.jboss.intersmash.model.helm.charts.values.xp5.VolumeMount()
 						.withName(volumeMount.getName())
 						.withMountPath(volumeMount.getMountPath())
 						.withMountPropagation(volumeMount.getMountPropagation())
